@@ -87,10 +87,10 @@ function AgendarCita() {
         </Alert>
         <Button variant="outline-primary" onClick={agendarOtra}>
           Agendar otra cita
-          <Link to="/mis-citas" className="btn btn-primary ms-2">
-            Ver mis citas
-          </Link>
         </Button>
+        <Link to="/mis-citas" className="btn btn-primary ms-2">
+            Ver mis citas
+        </Link>
       </section>
     )
   }
