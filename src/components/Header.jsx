@@ -12,6 +12,7 @@ function Header() {
             <Nav.Link as={Link} to="/">Inicio</Nav.Link>
             <Nav.Link as={Link} to="/agendar">Agendar cita</Nav.Link>
             <Nav.Link as={Link} to="/mis-citas">Mis citas</Nav.Link>
+            <Nav.Link as={Link} to="/contacto">Contacto</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
