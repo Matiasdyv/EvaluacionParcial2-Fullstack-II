@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { Row, Col, Form } from 'react-bootstrap'
 import MedicoCard from '../components/MedicoCard'
 import { obtenerMedicos } from '../data/db'
+import { useNavigate } from 'react-router-dom'
 
 function Home() {
+  const navigate = useNavigate()
   const [medicos] = useState(() => obtenerMedicos())
   const [busqueda, setBusqueda] = useState('')
 
@@ -14,7 +16,7 @@ function Home() {
   )
 
   const manejarSeleccion = (medico) => {
-    alert(`Seleccionaste a ${medico.nombre}`)
+    alert(navigate('/agendar/' + medico.id))
   }
 
   return (
