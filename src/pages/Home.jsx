@@ -16,7 +16,7 @@ function Home() {
   )
 
   const manejarSeleccion = (medico) => {
-    alert(navigate('/agendar/' + medico.id))
+    navigate('/agendar/' + medico.id)
   }
 
   return (
