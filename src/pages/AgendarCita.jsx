@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Alert, Button, Col, Form, Row } from 'react-bootstrap'
 import { crearCita, obtenerMedicos } from '../data/db'
 
@@ -87,6 +87,9 @@ function AgendarCita() {
         </Alert>
         <Button variant="outline-primary" onClick={agendarOtra}>
           Agendar otra cita
+          <Link to="/mis-citas" className="btn btn-primary ms-2">
+            Ver mis citas
+          </Link>
         </Button>
       </section>
     )
