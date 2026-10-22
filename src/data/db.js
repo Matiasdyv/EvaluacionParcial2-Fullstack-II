@@ -12,6 +12,8 @@ const CLAVES = {
   medicos: 'st_medicos',
   citas: 'st_citas',
   mensajes: 'st_mensajes',
+  usuarios: 'st_usuarios',
+  sesion: 'st_sesion',
 }
 
 const MEDICOS_INICIALES = [
@@ -106,3 +108,39 @@ export const obtenerMensajes = () => leer(CLAVES.mensajes)
 export const crearMensaje = (mensaje) => crear(CLAVES.mensajes, { ...mensaje, estado: 'Pendiente' })
 export const actualizarMensaje = (id, cambios) => actualizar(CLAVES.mensajes, id, cambios)
 export const eliminarMensaje = (id) => eliminar(CLAVES.mensajes, id)
+
+// ---------- Usuarios y sesión ----------
+
+export const obtenerUsuarios = () => leer(CLAVES.usuarios)
+
+export const registrarUsuario = (usuario) => {
+  const usuarios = obtenerUsuarios()
+  if (usuarios.some((u) => u.rut === usuario.rut)) {
+    return { ok: false, error: 'Ya existe una cuenta con ese RUT.' }
+  }
+  if (usuarios.some((u) => u.email.toLowerCase() === usuario.email.toLowerCase())) {
+    return { ok: false, error: 'Ya existe una cuenta con ese correo.' }
+  }
+  const nuevo = crear(CLAVES.usuarios, { ...usuario, id: usuario.rut })
+  return { ok: true, usuario: nuevo }
+}
+
+export const iniciarSesion = (rut, password) => {
+  const usuario = obtenerUsuarios().find((u) => u.rut === rut && u.password === password)
+  if (!usuario) {
+    return { ok: false, error: 'RUT o contraseña incorrectos.' }
+  }
+  localStorage.setItem(CLAVES.sesion, JSON.stringify(usuario.rut))
+  return { ok: true, usuario }
+}
+
+export const cerrarSesion = () => localStorage.removeItem(CLAVES.sesion)
+
+export const obtenerUsuarioActual = () => {
+  try {
+    const rut = JSON.parse(localStorage.getItem(CLAVES.sesion))
+    return obtenerUsuarios().find((u) => u.rut === rut) ?? null
+  } catch {
+    return null
+  }
+}
