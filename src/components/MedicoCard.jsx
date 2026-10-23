@@ -1,7 +1,8 @@
 import { Card, Button } from 'react-bootstrap'
+import { formatearPesos } from '../utils/formato'
 
 function MedicoCard({ medico, onSeleccionar }) {
-  const { nombre, especialidad, horaInicio, horaFin, duracion } = medico
+  const { nombre, especialidad, horaInicio, horaFin, duracion, precio } = medico
 
   return (
     <Card className="h-100 shadow-sm">
@@ -12,6 +13,12 @@ function MedicoCard({ medico, onSeleccionar }) {
           Horario: {horaInicio} - {horaFin}
           <br />
           Duración: {duracion} min
+          {precio !== undefined && (
+            <>
+              <br />
+              Valor consulta: <strong>{formatearPesos(precio)}</strong>
+            </>
+          )}
         </Card.Text>
         <Button
           variant="primary"

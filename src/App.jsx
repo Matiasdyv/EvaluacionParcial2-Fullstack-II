@@ -9,6 +9,12 @@ import Contacto from './pages/Contacto'
 import Nosotros from './pages/Nosotros'
 import Registro from './pages/Registro'
 import Login from './pages/Login'
+import RutaAdmin from './components/RutaAdmin'
+import LoginAdmin from './pages/admin/LoginAdmin'
+import Dashboard from './pages/admin/Dashboard'
+import Contactos from './pages/admin/Contactos'
+import Costos from './pages/admin/Costos'
+import Informes from './pages/admin/Informes'
 
 function App() {
   return (
@@ -24,6 +30,13 @@ function App() {
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/admin/login" element={<LoginAdmin />} />
+          <Route path="/admin" element={<RutaAdmin />}>
+            <Route index element={<Dashboard />} />
+            <Route path="contactos" element={<Contactos />} />
+            <Route path="costos" element={<Costos />} />
+            <Route path="informes" element={<Informes />} />
+          </Route>
         </Routes>
       </main>
       <Footer />

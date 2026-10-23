@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/auth'
 
 function Header() {
-  const { usuario, logout } = useAuth()
+  const { usuario, logout, admin } = useAuth()
   const navigate = useNavigate()
 
   const cerrarSesion = () => {
@@ -23,6 +23,9 @@ function Header() {
             <Nav.Link as={Link} to="/mis-citas">Mis citas</Nav.Link>
             <Nav.Link as={Link} to="/contacto">Contacto</Nav.Link>
             <Nav.Link as={Link} to="/nosotros">Nosotros</Nav.Link>
+            <Nav.Link as={Link} to={admin ? '/admin' : '/admin/login'}>
+              {admin ? 'Administración' : 'Administrador'}
+            </Nav.Link>
             {usuario ? (
               <>
                 <Navbar.Text className="ms-md-2">Hola, {usuario.nombre}</Navbar.Text>
